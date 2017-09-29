@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load readmore %}
 
 {% block content %}
     {% for post in posts %}
@@ -8,7 +9,8 @@
                 <p>Published: {{ post.published_date }}</p>
              </div>
              <br><br>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.text|truncatewords_html:15|linebreaksbr }}</p>
+            <a href="{% url 'post_detail' pk=post.pk %}">read more</a>
         </div>
     {% endfor %}
 {% endblock %}
